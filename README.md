@@ -21,6 +21,11 @@ Ajudar desenvolvedores iniciantes a entender:
 ### 🧩 Estruturais
 
 * [Adapter](./docs/structural/adapter.md)
+
+### 🔄 Comportamentais
+
+* [Strategy](./docs/behavioral/strategy.md)
+
 ---
 
 ## 💻 Tecnologias
