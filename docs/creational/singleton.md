@@ -19,7 +19,7 @@ var logger1 = new Logger();
 var logger2 = new Logger();
 ````
 
-**Problema**
+**Problema:**
 Cada instância é independente. Logs podem ficar espalhados, configurações duplicadas e difícil controle de comportamento.
 
 ---
