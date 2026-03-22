@@ -18,6 +18,9 @@ Ajudar desenvolvedores iniciantes a entender:
 
 * [Singleton](./docs/creational/singleton.md)
 
+### 🧩 Estruturais
+
+* [Adapter](./docs/structural/adapter.md)
 ---
 
 ## 💻 Tecnologias
