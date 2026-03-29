@@ -96,7 +96,6 @@ public class HtmlToTextAdapter
     public string GetText() => _htmlMessage.GetHtml()
                                            .Replace("<h1>", "")
                                            .Replace("</h1>", "");
-    }
 }
 ```
 
