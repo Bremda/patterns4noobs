@@ -26,17 +26,18 @@ Os padrões de projeto são divididos em três categorias principais. Clique no 
 ### 🏗️ Criacionais
 Lidam com os mecanismos de criação de objetos, buscando instanciá-los da forma mais adequada para a situação.
 
-* [**Singleton**](./docs/creational/singleton.md) — Garante uma única instância de uma classe e um ponto global de acesso a ela.
+* [**Singleton**](./docs/creational/singleton.md) 
+* [**Factory Method**](./docs/creational/factory.md) 
 
 ### 🧩 Estruturais
 Explicam como montar objetos e classes em estruturas maiores, sem perder a eficiência e a flexibilidade.
 
-* [**Adapter**](./docs/structural/adapter.md) — Permite que interfaces incompatíveis trabalhem juntas trabalhando como um "tradutor".
+* [**Adapter**](./docs/structural/adapter.md)
 
 ### 🔄 Comportamentais
 Cuidam da comunicação e da atribuição de responsabilidades entre os objetos.
 
-* [**Strategy**](./docs/behavioral/strategy.md) — Permite definir uma família de algoritmos e torná-los intercambiáveis em tempo de execução.
+* [**Strategy**](./docs/behavioral/strategy.md)
 
 ---
 
