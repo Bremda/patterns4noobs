@@ -1,13 +1,33 @@
 ﻿# 🔄 Strategy
 
-## 📌 O que é
-O **Strategy** é um padrão comportamental que permite **definir uma família de algoritmos** e torná-los intercambiáveis.  
-Ele evita grandes blocos de `if/else` ou `switch` no código.
+## 🧭 Guia rápido
+
+- [📌 Visão geral](#-visão-geral)
+- [🎯 Caso de uso](#-caso-de-uso)
+- [💡 Solução](#-solução)
+- [🧱 Implementação](#-implementação)
+- [🧪 Uso](#-uso)
+- [🎯 Benefícios](#-benefícios)
+- [⚠️ Pontos de atenção](#-pontos-de-atenção)
+- [📝 Conclusão](#-conclusão)
 
 ---
 
-## 🧩 Problema
-Suponha que você tenha um sistema de pagamento que decide o método com `if/else`:
+## 📌 Visão geral
+
+O **Strategy** é um padrão de projeto comportamental que permite **definir uma família de algoritmos**, encapsulá-los e torná-los **intercambiáveis**.
+
+A ideia principal é separar diferentes comportamentos em classes independentes, permitindo que a lógica seja alterada em tempo de execução **sem alterar o código do cliente**.
+
+---
+
+## 🎯 Caso de uso
+
+### O Cenário
+Um sistema de pagamento precisa suportar múltiplos métodos, como **Cartão de Crédito** e **PIX**.  
+Inicialmente, um único serviço concentra toda a lógica e decide qual método usar através de estruturas condicionais (`if/else`).
+
+### Implementação inicial 
 
 ```csharp
 public class PaymentProcessor
@@ -25,70 +45,108 @@ public class PaymentProcessor
     }
 }
 
+// Uso:
 var processor = new PaymentProcessor();
 processor.Pay("Pix", 100);
 processor.Pay("CreditCard", 50);
 ```
 
-**Problema:**
-Adicionar novos métodos de pagamento exige alterar a classe toda. Código difícil de manter e testar.
+### Por que isso não escala?
+* **Código inflado:** O bloco de `if/else` cresce indefinidamente a cada novo método de pagamento adicionado.
+* **Manutenção complexa:** É difícil de manter e testar, pois qualquer alteração exige mexer na classe principal.
+* **Alto acoplamento:** A classe central precisa conhecer as regras de negócio de todas as variações de pagamento.
+* **Violação do Princípio Aberto/Fechado (OCP):** Fere os princípios do SOLID, pois a classe precisa ser modificada para ser estendida.
 
-## Como o Strategy resolveria isso?
+---
 
-Criamos uma interface para o algoritmo de pagamento e implementações separadas:
+## 💡 Solução
 
-```
+Cada tipo de pagamento se torna uma estratégia independente que implementa um contrato comum (neste caso, `IPaymentStrategy`). O contexto (`PaymentContext`) apenas utiliza a estratégia injetada, ignorando os detalhes técnicos de sua implementação.
+
+### Estrutura conceitual
+* **Contrato (Interface):** Define o comportamento comum que todas as estratégias devem ter.
+* **Estratégias concretas:** Implementam as variações reais do comportamento.
+* **Contexto:** Delega a execução para a estratégia escolhida no momento.
+
+---
+
+## 🧱 Implementação
+
+### 1. O Contrato
+
+```csharp
 public interface IPaymentStrategy
 {
     void Pay(decimal amount);
 }
+```
 
+### 2. As Estratégias Concretas
+
+```csharp
 public class CreditCardPayment : IPaymentStrategy
 {
-    public void Pay(decimal amount)
-    {
-        Console.WriteLine($"Pago com cartão: {amount}");
-    }
+    public void Pay(decimal amount) => Console.WriteLine($"Pago com cartão: {amount:C}");
 }
 
 public class PixPayment : IPaymentStrategy
 {
-    public void Pay(decimal amount)
-    {
-        Console.WriteLine($"Pago com PIX: {amount}");
-    }
+    public void Pay(decimal amount) => Console.WriteLine($"Pago com PIX: {amount:C}");
 }
-````
-
-Assim, é possível consumir o padrão Strategy na classe PaymentContext:
-
 ```
+
+### 3. O Contexto
+
+```csharp
 public class PaymentContext
 {
-    private IPaymentStrategy _strategy;
+    private readonly IPaymentStrategy _strategy;
 
     public PaymentContext(IPaymentStrategy strategy) => _strategy = strategy;
 
     public void Execute(decimal amount) => _strategy.Pay(amount);
 }
+```
 
+---
+
+## 🧪 Uso
+
+A utilização se torna limpa e direta, injetando a dependência correta para cada fluxo:
+
+```csharp
+// Pagamento via Cartão de Crédito
 var creditPayment = new PaymentContext(new CreditCardPayment());
 creditPayment.Execute(100);
 
+// Pagamento via PIX
 var pixPayment = new PaymentContext(new PixPayment());
 pixPayment.Execute(50);
 ```
 
-🎯 **Vantagens**
-- Evita if/else espalhados
-- Facilita adicionar novos comportamentos
-- Código mais limpo e testável
+---
 
-👍 **Quando usar Strategy?**
-- Sistemas com múltiplos algoritmos para a mesma operação
-- Regras de negócio que mudam dinamicamente
-- Pagamentos, cálculos, filtros, validações
+## 🎯 Benefícios
 
-👎 **Desvantagens**
-Aumenta número de classes
-Pode parecer “complexo demais” para cenários simples
+* ✅ **Remove condicionais:** Elimina `if/else` ou `switch` espalhados pelo código.
+* ✅ **Extensibilidade:** Facilita adicionar novas estratégias sem alterar o código existente.
+* ✅ **Qualidade de código:** Mantém o código mais limpo, organizado e altamente testável.
+* ✅ **Flexibilidade:** Permite trocar o comportamento do sistema em tempo de execução.
+
+---
+
+## ⚠️ Pontos de atenção
+
+* **Volume de arquivos:** Aumenta naturalmente o número de classes no projeto.
+* **Overengineering:** Pode ser uma solução exagerada para cenários muito simples, onde a lógica dificilmente vai mudar.
+* **Curva de aprendizado:** Exige que a equipe tenha entendimento sólido de abstrações e interfaces.
+
+---
+
+## 📝 Conclusão
+
+O padrão **Strategy** resolve um problema muito comum no desenvolvimento de software: quando uma mesma operação possui múltiplas formas de ser executada. Ao separar cada comportamento em sua própria classe, o sistema ganha extrema flexibilidade e organização.
+
+Novas regras podem ser adicionadas sem alterar o código existente, reduzindo riscos de *bugs* e facilitando a manutenção a longo prazo.
+
+> **Dica de ouro:** Use o Strategy sempre que você perceber muitos `if/else` decidindo *como* executar uma ação — isso é um forte indício de que esses comportamentos deveriam estar isolados.
