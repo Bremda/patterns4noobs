@@ -11,15 +11,11 @@
 - [⚠️ Pontos de atenção](#-pontos-de-atenção)
 - [📝 Conclusão](#-conclusão)
 
----
-
 ## 📌 Visão geral
 
 O **Adapter** é um padrão de projeto estrutural que permite que objetos com interfaces incompatíveis **trabalhem juntos**. 
 
 Ele atua como um verdadeiro “tradutor” (como um adaptador de tomada ou um cabo conversor) entre classes que, de outra forma, não poderiam se comunicar diretamente.
-
----
 
 ## 🎯 Caso de uso
 
@@ -52,8 +48,6 @@ processor.PrintText(htmlMessage.GetHtml());
 * **Código fechado:** Muitas vezes, a classe original (`HtmlMessage`) não pode ser alterada por fazer parte de uma biblioteca de terceiros ou código legado.
 * Precisamos de uma adaptação que converta o HTML para o formato exato que o processador aceita, sem reescrever a lógica existente.
 
----
-
 ## 💡 Solução
 
 Criamos uma classe intermediária, o **Adapter**, que converte a saída HTML da classe original em texto simples. O sistema passa a se comunicar apenas com o Adapter, que traduz os dados por baixo dos panos.
@@ -62,8 +56,6 @@ Criamos uma classe intermediária, o **Adapter**, que converte a saída HTML da 
 * **Serviço Incompatível (Adaptee):** A classe existente que possui a lógica útil, mas em um formato não reconhecido (ex: `HtmlMessage`).
 * **O Cliente / Alvo (Target):** O sistema que precisa consumir a informação (ex: `TextProcessor`).
 * **Adaptador (Adapter):** A classe que faz a ponte, recebendo dados do Adaptee e entregando ao Cliente no formato correto.
-
----
 
 ## 🧱 Implementação
 
@@ -99,8 +91,6 @@ public class HtmlToTextAdapter
 }
 ```
 
----
-
 ## 🧪 Uso
 
 Ao utilizar o sistema, o cliente instancia o adaptador passando a classe incompatível para ele. O fluxo ocorre de forma transparente:
@@ -119,8 +109,6 @@ processor.PrintText(adapter.GetText());
 // Saída no console: Bem-vindo!
 ```
 
----
-
 ## 🎯 Benefícios
 
 * ✅ **Reutilização:** Permite reusar classes e bibliotecas existentes sem modificar o código antigo.
@@ -128,14 +116,10 @@ processor.PrintText(adapter.GetText());
 * ✅ **Tradução de dados:** Excelente para traduzir formatos (como de XML para JSON, ou HTML para Texto).
 * ✅ **Baixo Acoplamento:** Isola a lógica de conversão da lógica de negócio principal do sistema.
 
----
-
 ## ⚠️ Pontos de atenção
 
 * **Volume de arquivos:** Aumenta a complexidade geral do projeto ao introduzir novas classes e interfaces.
 * **Curativo:** Se você tiver acesso total ao código-fonte de ambas as partes e for fácil refatorar, às vezes é melhor corrigir a interface incompatível diretamente do que criar um Adapter.
-
----
 
 ## 📝 Conclusão
 

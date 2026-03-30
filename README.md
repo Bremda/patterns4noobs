@@ -8,16 +8,12 @@
 
 Este repositório foi criado para desmistificar os Padrões de Projeto (Design Patterns) para desenvolvedores iniciantes, trazendo explicações diretas, casos de uso reais e exemplos de código em **C#**.
 
----
-
 ## 🎯 Objetivo
 
 Ajudar desenvolvedores a entender:
 * **O que são** Design Patterns e que problemas eles resolvem;
 * **Quando usar** (e, mais importante, quando *não* usar) cada padrão;
 * **Como implementar** na prática, fugindo de explicações puramente acadêmicas.
-
----
 
 ## 🧠 Padrões 
 
@@ -40,8 +36,6 @@ Cuidam da comunicação e da atribuição de responsabilidades entre os objetos.
 
 * [**Strategy**](./docs/behavioral/strategy.md)
 
----
-
 ## 💻 Tecnologias e Pré-requisitos
 
 Para rodar e testar os exemplos deste repositório, você vai precisar de:
@@ -49,15 +43,11 @@ Para rodar e testar os exemplos deste repositório, você vai precisar de:
 * **Plataforma:** .NET (Recomendado .NET 6 ou superior)
 * **IDE Recomendada:** Visual Studio, VS Code ou Rider
 
----
-
 ## 📖 Referências
 
 Este material foi construído com base nas melhores literaturas sobre o tema:
 * **Design Patterns: Elements of Reusable Object-Oriented Software** (Gang of Four / GoF)
 * [Refactoring.Guru](https://refactoring.guru/pt-br/design-patterns) - Uma excelente referência moderna e visual para padrões de projeto.
-
----
 
 ## 🤝 Como Contribuir
 
@@ -69,5 +59,4 @@ Se você notou algum erro, tem uma ideia para melhorar um exemplo ou quer escrev
 3. Faça o commit das suas alterações (use os *Conventional Commits*, ex: `docs: adicionar padrão Factory Method`).
 4. Abra um **Pull Request**.
 
----
 *Feito com ☕ e código por [Brenda Valadares/@Bremda].*

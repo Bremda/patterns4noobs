@@ -11,15 +11,11 @@
 - [⚠️ Pontos de atenção](#-pontos-de-atenção)
 - [📝 Conclusão](#-conclusão)
 
----
-
 ## 📌 Visão geral
 
 O **Factory Method** é um padrão de projeto criacional que fornece uma interface para criar objetos em uma superclasse, mas permite que as **subclasses decidam qual classe instanciar**.
 
 Ele delega a responsabilidade de inicialização (o uso do `new`) para subclasses específicas, isolando a lógica de criação da lógica de uso.
-
----
 
 ## 🎯 Caso de uso
 
@@ -58,8 +54,6 @@ public class PagamentoService
 * **Violação do OCP (Open/Closed Principle):** Se adicionarmos suporte a Criptomoedas amanhã, seremos obrigados a modificar essa classe, correndo o risco de quebrar o que já funciona.
 * **Complexidade:** Com o tempo, o método `Processar` se tornará um bloco gigante e insustentável de `if/else` ou `switch`.
 
----
-
 ## 💡 Solução
 
 A solução proposta pelo Factory Method é substituir as chamadas diretas de construção de objetos por chamadas a um método *fábrica* especial. 
@@ -71,8 +65,6 @@ Criamos uma abstração para os pagamentos (os *Produtos*) e uma abstração par
 * **Produtos Concretos:** As implementações específicas do contrato (Cartão, PIX, Boleto).
 * **Criador (Factory Base):** Declara o método fábrica que retorna o Produto.
 * **Criadores Concretos:** Sobrescrevem o método fábrica para retornar uma instância do Produto Concreto específico.
-
----
 
 ## 🧱 Implementação
 
@@ -136,8 +128,6 @@ public class BoletoFactory : PagamentoFactory
 }
 ```
 
----
-
 ## 🧪 Uso
 
 O código cliente (quem vai usar o sistema) interage apenas com a Factory correta, sem se preocupar em como o objeto final é construído:
@@ -155,8 +145,6 @@ pagamento.Processar();
 // Saída: Pagamento via PIX confirmado.
 ```
 
----
-
 ## 🎯 Benefícios
 
 * ✅ **Remove condicionais:** Elimina as cadeias de `if/else` atreladas à criação de objetos.
@@ -164,14 +152,10 @@ pagamento.Processar();
 * ✅ **Princípio de Responsabilidade Única (SRP):** O código de criação do produto fica isolado em um único lugar no programa, facilitando a manutenção.
 * ✅ **Desacoplamento:** Separa rigidamente a lógica de *criação* da lógica de *uso* do objeto.
 
----
-
 ## ⚠️ Pontos de atenção
 
 * **Explosão de Classes:** O código pode se tornar mais complicado do que deveria, pois exige a criação de novas subclasses de "Fábrica" para cada nova classe de "Produto" que você adicionar.
 * **Curva de aprendizado:** Pode introduzir uma complexidade desnecessária para cenários muito simples ou para iniciantes que ainda não dominam polimorfismo e herança.
-
----
 
 ## 📝 Conclusão
 

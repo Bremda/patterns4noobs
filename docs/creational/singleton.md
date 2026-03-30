@@ -11,15 +11,11 @@
 - [⚠️ Pontos de atenção](#-pontos-de-atenção)
 - [📝 Conclusão](#-conclusão)
 
----
-
 ## 📌 Visão geral
 
 O **Singleton** é um padrão de projeto criacional que garante que uma classe tenha **apenas uma única instância** durante todo o ciclo de vida da aplicação, fornecendo um **ponto global de acesso** a ela.
 
 Em vez de criar novos objetos toda vez que precisar de um serviço, você reutiliza a mesma instância que já foi criada na primeira vez.
-
----
 
 ## 🎯 Caso de uso
 
@@ -47,8 +43,6 @@ logger2.Log("Erro ao conectar no banco de dados.");
 * **Falta de controle centralizado:** Cada instância é independente. Se o logger precisasse travar um arquivo físico de texto para escrever nele, múltiplas instâncias tentariam acessar o mesmo arquivo ao mesmo tempo, causando erros (concorrência).
 * **Configurações duplicadas:** Se o Logger tiver configurações (ex: nível de log, destino), você teria que configurar cada nova instância separadamente.
 
----
-
 ## 💡 Solução
 
 A solução do Singleton é bloquear a criação livre de novos objetos (escondendo o construtor) e forçar todas as partes do sistema a pedirem a instância diretamente para a própria classe. Se a instância já existir, ela é devolvida; se não, ela é criada na hora e depois devolvida.
@@ -57,8 +51,6 @@ A solução do Singleton é bloquear a criação livre de novos objetos (esconde
 * **Construtor Privado:** Impede que outras classes usem o operador `new`.
 * **Campo Estático (Private):** Armazena a única instância criada da classe.
 * **Propriedade/Método Estático (Public):** O ponto de acesso global que retorna a instância armazenada.
-
----
 
 ## 🧱 Implementação
 
@@ -91,8 +83,6 @@ public class Logger
 }
 ```
 
----
-
 ## 🧪 Uso
 
 O uso se torna muito mais direto. Você não precisa instanciar ou passar a variável adiante, basta chamar a classe de qualquer lugar:
@@ -110,15 +100,11 @@ var logB = Logger.Instance;
 Console.WriteLine(ReferenceEquals(logA, logB)); // Retorna: True
 ```
 
----
-
 ## 🎯 Benefícios
 
 * ✅ **Controle estrito:** Você tem certeza absoluta de que existe apenas uma instância dessa classe rodando no sistema.
 * ✅ **Acesso Global:** Qualquer parte do código pode acessar o serviço sem precisar ficar injetando dependências complexas.
 * ✅ **Economia de Recursos:** Objetos pesados (como conexões de banco de dados ou gerenciadores de arquivos) são criados apenas uma vez (*Lazy Initialization* garante que só será criado quando for realmente usado pela primeira vez).
-
----
 
 ## ⚠️ Pontos de atenção
 
@@ -126,8 +112,6 @@ O Singleton é um dos padrões mais criticados (às vezes chamado de *Anti-patte
 * **Variável Global Disfarçada:** Ele introduz estado global no sistema, o que pode gerar acoplamento oculto e dificultar a manutenção se muitas classes começarem a depender dele.
 * **Dificuldade de Testes Unitários:** Fazer *mock* de Singletons estáticos em testes unitários costuma ser bastante trabalhoso.
 * **Multithreading (Concorrência):** A implementação simples mostrada acima pode falhar se duas *threads* tentarem acessar `Instance` ao mesmíssimo tempo pela primeira vez. Em sistemas críticos, é necessário usar `lock` para garantir o *Thread Safety*.
-
----
 
 ## 📝 Conclusão
 

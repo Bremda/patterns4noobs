@@ -11,7 +11,6 @@
 - [⚠️ Pontos de atenção](#-pontos-de-atenção)
 - [📝 Conclusão](#-conclusão)
 
----
 
 ## 📌 Visão geral
 
@@ -19,7 +18,6 @@ O **Strategy** é um padrão de projeto comportamental que permite **definir uma
 
 A ideia principal é separar diferentes comportamentos em classes independentes, permitindo que a lógica seja alterada em tempo de execução **sem alterar o código do cliente**.
 
----
 
 ## 🎯 Caso de uso
 
@@ -57,8 +55,6 @@ processor.Pay("CreditCard", 50);
 * **Alto acoplamento:** A classe central precisa conhecer as regras de negócio de todas as variações de pagamento.
 * **Violação do Princípio Aberto/Fechado (OCP):** Fere os princípios do SOLID, pois a classe precisa ser modificada para ser estendida.
 
----
-
 ## 💡 Solução
 
 Cada tipo de pagamento se torna uma estratégia independente que implementa um contrato comum (neste caso, `IPaymentStrategy`). O contexto (`PaymentContext`) apenas utiliza a estratégia injetada, ignorando os detalhes técnicos de sua implementação.
@@ -67,8 +63,6 @@ Cada tipo de pagamento se torna uma estratégia independente que implementa um c
 * **Contrato (Interface):** Define o comportamento comum que todas as estratégias devem ter.
 * **Estratégias concretas:** Implementam as variações reais do comportamento.
 * **Contexto:** Delega a execução para a estratégia escolhida no momento.
-
----
 
 ## 🧱 Implementação
 
@@ -108,8 +102,6 @@ public class PaymentContext
 }
 ```
 
----
-
 ## 🧪 Uso
 
 A utilização se torna limpa e direta, injetando a dependência correta para cada fluxo:
@@ -124,8 +116,6 @@ var pixPayment = new PaymentContext(new PixPayment());
 pixPayment.Execute(50);
 ```
 
----
-
 ## 🎯 Benefícios
 
 * ✅ **Remove condicionais:** Elimina `if/else` ou `switch` espalhados pelo código.
@@ -133,15 +123,11 @@ pixPayment.Execute(50);
 * ✅ **Qualidade de código:** Mantém o código mais limpo, organizado e altamente testável.
 * ✅ **Flexibilidade:** Permite trocar o comportamento do sistema em tempo de execução.
 
----
-
 ## ⚠️ Pontos de atenção
 
 * **Volume de arquivos:** Aumenta naturalmente o número de classes no projeto.
 * **Overengineering:** Pode ser uma solução exagerada para cenários muito simples, onde a lógica dificilmente vai mudar.
 * **Curva de aprendizado:** Exige que a equipe tenha entendimento sólido de abstrações e interfaces.
-
----
 
 ## 📝 Conclusão
 
