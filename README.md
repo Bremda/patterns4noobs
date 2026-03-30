@@ -26,6 +26,7 @@ Os padrões de projeto são divididos em três categorias principais. Clique no 
 ### 🏗️ Criacionais
 Lidam com os mecanismos de criação de objetos, buscando instanciá-los da forma mais adequada para a situação.
 
+* [**Builder**](./docs/creational/builder.md) 
 * [**Singleton**](./docs/creational/singleton.md) 
 * [**Factory Method**](./docs/creational/factory.md) 
 
