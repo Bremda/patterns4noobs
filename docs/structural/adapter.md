@@ -1,28 +1,17 @@
-﻿# 🔌 Adapter
+﻿## Adapter
 
-## 🧭 Guia rápido
-
-- [📌 Visão geral](#-visão-geral)
-- [🎯 Caso de uso](#-caso-de-uso)
-- [💡 Solução](#-solução)
-- [🧱 Implementação](#-implementação)
-- [🧪 Uso](#-uso)
-- [🎯 Benefícios](#-benefícios)
-- [⚠️ Pontos de atenção](#-pontos-de-atenção)
-- [📝 Conclusão](#-conclusão)
-
-## 📌 Visão geral
+### Visão geral
 
 O **Adapter** é um padrão de projeto estrutural que permite que objetos com interfaces incompatíveis **trabalhem juntos**. 
 
 Ele atua como um verdadeiro “tradutor” (como um adaptador de tomada ou um cabo conversor) entre classes que, de outra forma, não poderiam se comunicar diretamente.
 
-## 🎯 Caso de uso
+### Caso de uso
 
-### O Cenário
+#### O Cenário
 Imagine que você tem uma classe que gera mensagens formatadas em **HTML**, mas o processador principal do seu sistema espera receber apenas **texto simples**.
 
-### Implementação inicial
+#### Implementação inicial
 
 ```csharp
 public class HtmlMessage
@@ -39,27 +28,27 @@ public class TextProcessor
 var htmlMessage = new HtmlMessage();
 var processor = new TextProcessor();
 
-// ❌ Não funciona: PrintText espera texto simples, não HTML
+// Não funciona: PrintText espera texto simples, não HTML
 processor.PrintText(htmlMessage.GetHtml());
 ```
 
-### Por que isso é um problema?
+#### Por que isso é um problema?
 * **Incompatibilidade:** O `TextProcessor` não entende HTML e espera receber uma string limpa.
 * **Código fechado:** Muitas vezes, a classe original (`HtmlMessage`) não pode ser alterada por fazer parte de uma biblioteca de terceiros ou código legado.
 * Precisamos de uma adaptação que converta o HTML para o formato exato que o processador aceita, sem reescrever a lógica existente.
 
-## 💡 Solução
+### Solução
 
 Criamos uma classe intermediária, o **Adapter**, que converte a saída HTML da classe original em texto simples. O sistema passa a se comunicar apenas com o Adapter, que traduz os dados por baixo dos panos.
 
-### Estrutura conceitual
+#### Estrutura conceitual
 * **Serviço Incompatível (Adaptee):** A classe existente que possui a lógica útil, mas em um formato não reconhecido (ex: `HtmlMessage`).
 * **O Cliente / Alvo (Target):** O sistema que precisa consumir a informação (ex: `TextProcessor`).
 * **Adaptador (Adapter):** A classe que faz a ponte, recebendo dados do Adaptee e entregando ao Cliente no formato correto.
 
-## 🧱 Implementação
+### Implementação
 
-### 1. As Classes Incompatíveis
+#### 1. As Classes Incompatíveis
 
 ```csharp
 // A classe que precisamos usar (Gera HTML)
@@ -75,7 +64,7 @@ public class TextProcessor
 }
 ```
 
-### 2. O Adaptador
+#### 2. O Adaptador
 
 ```csharp
 public class HtmlToTextAdapter
@@ -91,7 +80,7 @@ public class HtmlToTextAdapter
 }
 ```
 
-## 🧪 Uso
+### Uso
 
 Ao utilizar o sistema, o cliente instancia o adaptador passando a classe incompatível para ele. O fluxo ocorre de forma transparente:
 
@@ -109,19 +98,19 @@ processor.PrintText(adapter.GetText());
 // Saída no console: Bem-vindo!
 ```
 
-## 🎯 Benefícios
+### Benefícios
 
-* ✅ **Reutilização:** Permite reusar classes e bibliotecas existentes sem modificar o código antigo.
-* ✅ **Integração:** Facilita a comunicação entre sistemas diferentes ou a integração com APIs que possuem interfaces incompatíveis.
-* ✅ **Tradução de dados:** Excelente para traduzir formatos (como de XML para JSON, ou HTML para Texto).
-* ✅ **Baixo Acoplamento:** Isola a lógica de conversão da lógica de negócio principal do sistema.
+* **Reutilização:** Permite reusar classes e bibliotecas existentes sem modificar o código antigo.
+* **Integração:** Facilita a comunicação entre sistemas diferentes ou a integração com APIs que possuem interfaces incompatíveis.
+* **Tradução de dados:** Excelente para traduzir formatos (como de XML para JSON, ou HTML para Texto).
+* **Baixo Acoplamento:** Isola a lógica de conversão da lógica de negócio principal do sistema.
 
-## ⚠️ Pontos de atenção
+### Pontos de atenção
 
 * **Volume de arquivos:** Aumenta a complexidade geral do projeto ao introduzir novas classes e interfaces.
 * **Curativo:** Se você tiver acesso total ao código-fonte de ambas as partes e for fácil refatorar, às vezes é melhor corrigir a interface incompatível diretamente do que criar um Adapter.
 
-## 📝 Conclusão
+### Conclusão
 
 O padrão **Adapter** é um "salva-vidas" na engenharia de software, especialmente ao lidar com códigos legados ou bibliotecas externas. Ele garante que sistemas modernos consigam conversar com módulos antigos sem forçar modificações perigosas no código existente.
 
