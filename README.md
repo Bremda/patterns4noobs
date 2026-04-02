@@ -1,4 +1,4 @@
-﻿# 📚 patterns4noobs
+﻿## patterns4noobs
 
 > **Design Patterns explicados de forma simples, prática e sem complicação.**
 
@@ -8,48 +8,48 @@
 
 Este repositório foi criado para desmistificar os Padrões de Projeto (Design Patterns) para desenvolvedores iniciantes, trazendo explicações diretas, casos de uso reais e exemplos de código em **C#**.
 
-## 🎯 Objetivo
+### Objetivo
 
 Ajudar desenvolvedores a entender:
 * **O que são** Design Patterns e que problemas eles resolvem;
 * **Quando usar** (e, mais importante, quando *não* usar) cada padrão;
 * **Como implementar** na prática, fugindo de explicações puramente acadêmicas.
 
-## 🧠 Padrões 
+### Padrões 
 
 Os padrões de projeto são divididos em três categorias principais. Clique no padrão para ler o guia completo:
 
-### 🏗️ Criacionais
+#### Criacionais
 Lidam com os mecanismos de criação de objetos, buscando instanciá-los da forma mais adequada para a situação.
 
 * [**Builder**](./docs/creational/builder.md) 
 * [**Singleton**](./docs/creational/singleton.md) 
 * [**Factory Method**](./docs/creational/factory.md) 
 
-### 🧩 Estruturais
+#### Estruturais
 Explicam como montar objetos e classes em estruturas maiores, sem perder a eficiência e a flexibilidade.
 
 * [**Adapter**](./docs/structural/adapter.md)
 
-### 🔄 Comportamentais
+#### Comportamentais
 Cuidam da comunicação e da atribuição de responsabilidades entre os objetos.
 
 * [**Strategy**](./docs/behavioral/strategy.md)
 
-## 💻 Tecnologias e Pré-requisitos
+### Tecnologias e Pré-requisitos
 
 Para rodar e testar os exemplos deste repositório, você vai precisar de:
 * **Linguagem:** C#
 * **Plataforma:** .NET (Recomendado .NET 6 ou superior)
 * **IDE Recomendada:** Visual Studio, VS Code ou Rider
 
-## 📖 Referências
+### Referências
 
 Este material foi construído com base nas melhores literaturas sobre o tema:
 * **Design Patterns: Elements of Reusable Object-Oriented Software** (Gang of Four / GoF)
 * [Refactoring.Guru](https://refactoring.guru/pt-br/design-patterns) - Uma excelente referência moderna e visual para padrões de projeto.
 
-## 🤝 Como Contribuir
+### Como Contribuir
 
 Esse repositório está sendo construído aos poucos e toda contribuição é muito bem-vinda! 
 
