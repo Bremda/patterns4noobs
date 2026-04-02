@@ -30,6 +30,7 @@ Lidam com os mecanismos de criação de objetos, buscando instanciá-los da form
 Explicam como montar objetos e classes em estruturas maiores, sem perder a eficiência e a flexibilidade.
 
 * [**Adapter**](./docs/structural/adapter.md)
+* [**Decorator**](./docs/structural/decorator.md)
 
 #### Comportamentais
 Cuidam da comunicação e da atribuição de responsabilidades entre os objetos.
