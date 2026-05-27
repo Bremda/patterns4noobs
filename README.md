@@ -43,7 +43,7 @@ Cuidam da comunicação e da atribuição de responsabilidades entre os objetos.
 Para rodar e testar os exemplos deste repositório, você vai precisar de:
 * **Linguagem:** C#
 * **Plataforma:** .NET (Recomendado .NET 6 ou superior)
-* **IDE Recomendada:** Visual Studio, VS Code ou Rider
+* **IDE Recomendada:** Visual Studio, VS Code ou Sublime
 
 ### Referências
 
@@ -57,8 +57,8 @@ Esse repositório está sendo construído aos poucos e toda contribuição é mu
 
 Se você notou algum erro, tem uma ideia para melhorar um exemplo ou quer escrever sobre um padrão que ainda não está na lista:
 1. Faça um **Fork** do projeto.
-2. Crie uma nova branch (`git checkout -b feature/novo-padrao`).
-3. Faça o commit das suas alterações (use os *Conventional Commits*, ex: `docs: adicionar padrão Factory Method`).
+2. Crie uma nova branch (`git checkout -b docs/novo-padrao`).
+3. Faça o commit das suas alterações (use os *Conventional Commits*, ex: `docs: adiciona padrão Factory Method`).
 4. Abra um **Pull Request**.
 
 *Feito com ☕ e código por [Brenda Valadares/@Bremda].*
